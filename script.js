@@ -1,17 +1,61 @@
 // script.js
+function updateInitialValue() {
+    const broker = document.getElementById('broker').value;
+    const initialValueField = document.getElementById('initialValue');
+
+    // Definir o valor inicial e o mínimo de acordo com o broker selecionado
+    let minValue;
+    switch (broker) {
+        case 'Anne Richards':
+            minValue = 20;
+            break;
+        case 'Pepperstone':
+            minValue = 10;
+            break;
+        case 'Tradovate':
+            minValue = 30;
+            break;
+        default:
+            minValue = 20; // Valor padrão
+    }
+
+    initialValueField.value = minValue;
+    initialValueField.min = minValue;
+
+    // Adiciona o evento de input para forçar o valor mínimo
+    initialValueField.addEventListener('input', function() {
+        if (parseFloat(this.value) < minValue) {
+            this.value = minValue;
+        }
+    });
+}
+
 function calculateCompoundInterest() {
-    // Pegando valores dos inputs
+    const broker = document.getElementById('broker').value;
     const initialValue = parseFloat(document.getElementById('initialValue').value);
     const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
     const periods = parseInt(document.getElementById('periods').value);
-    const periodDays = 15; // Cada período tem 15 dias
-    const totalPeriods = periods / periodDays;
 
-    // Limpando tabela de resultados
+    // Definir a base de cálculo de acordo com o broker selecionado
+    let periodDays;
+    switch (broker) {
+        case 'Anne Richards':
+            periodDays = 15;
+            break;
+        case 'Pepperstone':
+            periodDays = 7;
+            break;
+        case 'Tradovate':
+            periodDays = 30;
+            break;
+        default:
+            periodDays = 15; // Padrão se algo der errado
+    }
+
+    const totalPeriods = Math.floor(periods / periodDays);
     const resultsTable = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
     resultsTable.innerHTML = '';
 
-    // Valores iniciais
     let currentValue = initialValue;
 
     for (let i = 0; i <= totalPeriods; i++) {
@@ -19,11 +63,9 @@ function calculateCompoundInterest() {
         const months = (days / 30).toFixed(1);
         const investedValue = currentValue.toFixed(2);
 
-        // Calculando o saldo com juros compostos
         currentValue = currentValue * (1 + interestRate);
         const balance = currentValue.toFixed(2);
 
-        // Adicionando linha à tabela
         const row = resultsTable.insertRow();
         row.innerHTML = `
             <td>${days}</td>

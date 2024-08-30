@@ -30,7 +30,7 @@ label {
     color: #555;
 }
 
-input {
+input, select {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
