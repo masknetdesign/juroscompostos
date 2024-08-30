@@ -12,7 +12,7 @@
         <form id="calcForm">
             <!-- Dropdown -->
             <label for="broker">Selecione o Broker:</label>
-            <select id="broker">
+            <select id="broker" onchange="updateInitialValue()">
                 <option value="Anne Richards">Anne Richards</option>
                 <option value="Pepperstone">Pepperstone</option>
                 <option value="Tradovate">Tradovate</option>
@@ -46,17 +46,13 @@
                 <!-- Resultados aparecerão aqui -->
             </tbody>
         </table>
+
         <footer>
             <p>&copy; 2024 @masknet. Todos os direitos reservados.</p>
+            <p><a href="https://gtar.abit-coin.com/h5/register?proCode=gt_i5kwx19s6n" target="_blank">Calculadora foi criado com base na Plataforma de investimentos!</a></p>
         </footer>
     </div>
 
     <script src="script.js"></script>
-
-    <!-- Adicionando o código JavaScript diretamente na página para garantir que a função seja carregada -->
-    <script>
-        document.getElementById('broker').addEventListener('change', updateInitialValue);
-        document.addEventListener('DOMContentLoaded', updateInitialValue);
-    </script>
 </body>
 </html>
