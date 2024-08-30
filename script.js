@@ -1,34 +1,4 @@
 // script.js
-function updateInitialValue() {
-    const broker = document.getElementById('broker').value;
-    const initialValueField = document.getElementById('initialValue');
-
-    // Definir o valor inicial e o mínimo de acordo com o broker selecionado
-    let minValue;
-    switch (broker) {
-        case 'Anne Richards':
-            minValue = 20;
-            break;
-        case 'Pepperstone':
-            minValue = 10;
-            break;
-        case 'Tradovate':
-            minValue = 30;
-            break;
-        default:
-            minValue = 20; // Valor padrão
-    }
-
-    initialValueField.value = minValue;
-    initialValueField.min = minValue;
-
-    // Adiciona o evento de input para forçar o valor mínimo
-    initialValueField.addEventListener('input', function() {
-        if (parseFloat(this.value) < minValue) {
-            this.value = minValue;
-        }
-    });
-}
 
 function calculateCompoundInterest() {
     const broker = document.getElementById('broker').value;
