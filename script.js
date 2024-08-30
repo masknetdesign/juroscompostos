@@ -33,16 +33,32 @@ function updateInitialValue() {
 
 // Função para calcular o juro composto
 function calculateCompoundInterest() {
+    const broker = document.getElementById('broker').value;
     const initialValueField = document.getElementById('initialValue');
     const initialValue = parseFloat(initialValueField.value);
 
-    // Verificar se o campo de valor inicial está vazio ou é menor que o valor mínimo
-    if (isNaN(initialValue) || initialValue <= 0) {
-        alert('Por favor, insira um valor inicial válido.');
+    // Definir o valor mínimo de acordo com o broker selecionado
+    let minValue;
+    switch (broker) {
+        case 'Anne Richards':
+            minValue = 20;
+            break;
+        case 'Pepperstone':
+            minValue = 10;
+            break;
+        case 'Tradovate':
+            minValue = 50;
+            break;
+        default:
+            minValue = 20; // Valor padrão
+    }
+
+    // Verificar se o valor inicial está abaixo do valor mínimo
+    if (isNaN(initialValue) || initialValue < minValue) {
+        alert(`O valor inicial deve ser no mínimo $${minValue} para o broker ${broker}.`);
         return;
     }
 
-    const broker = document.getElementById('broker').value;
     const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
     const periods = parseInt(document.getElementById('periods').value);
 
