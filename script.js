@@ -16,8 +16,8 @@ function updateInitialValue() {
             initialValue = 10;
             break;
         case 'Tradovate':
-            minValue = 30;
-            initialValue = 30;
+            minValue = 50;
+            initialValue = 50;
             break;
         default:
             minValue = 20; // Valor padrão
