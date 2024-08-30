@@ -58,7 +58,7 @@ function calculateCompoundInterest() {
 
     let currentValue = initialValue;
 
-    for (let i = 0; i <= totalPeriods; i++) {
+    for (let i = 1; i <= totalPeriods; i++) { // Começa de 1 para evitar linha inicial vazia
         const days = i * periodDays;
         const months = (days / 30).toFixed(1);
         const investedValue = currentValue.toFixed(2);
@@ -68,10 +68,10 @@ function calculateCompoundInterest() {
 
         const row = resultsTable.insertRow();
         row.innerHTML = `
-            <td>${days}</td>
-            <td>${months}</td>
             <td>$${investedValue}</td>
             <td>$${balance}</td>
+            <td>${days}</td>
+            <td>${months}</td>
         `;
     }
 }
